@@ -1,0 +1,20 @@
+{
+  "name": "salla-gigibloom-theme",
+  "author": "Badr",
+  "version": "1.0.0",
+  "description": "Gigi Bloom Salla Theme",
+  "theme_url": "https://salla.sa",
+  "support_url": "https://salla.sa",
+  "pages": [
+    {
+      "name": "index",
+      "title": "الصفحة الرئيسية",
+      "path": "src/views/pages/index.twig"
+    },
+    {
+      "name": "product.single",
+      "title": "صفحة المنتج",
+      "path": "src/views/pages/product/single.twig"
+    }
+  ]
+}

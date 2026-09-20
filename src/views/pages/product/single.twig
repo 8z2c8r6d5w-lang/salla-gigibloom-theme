@@ -1,0 +1,47 @@
+{% extends "layouts.master" %}
+
+{% block content %}
+<div class="container py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="product-gallery">
+            <div class="swiper main-swiper border rounded-lg">
+                <div class="swiper-wrapper">
+                    {% for image in product.images %}
+                        <div class="swiper-slide">
+                            <img src="{{ image.url }}" alt="{{ image.alt }}" class="w-full h-auto object-cover">
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="product-details flex flex-col justify-center">
+            <h1 class="text-2xl font-bold mb-3">{{ product.name }}</h1>
+            <div class="price-tag text-xl font-semibold mb-4 text-primary">
+                {{ product.price | currency }}
+            </div>
+
+            <div class="prose text-gray-600 mb-6">
+                {{ product.description | raw }}
+            </div>
+
+            {% if product.has_options %}
+                <salla-product-options options="{{ product.options }}"></salla-product-options>
+            {% endif %}
+
+            <salla-add-to-cart-button product-id="{{ product.id }}" class="mt-4"></salla-add-to-cart-button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper('.main-swiper', {
+            loop: true,
+            autoplay: { delay: 4000 }
+        });
+    });
+</script>
+{% endblock %}

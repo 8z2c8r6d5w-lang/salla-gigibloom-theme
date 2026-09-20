@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% hook 'head:start' %}
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{ theme_asset('app.css') }}
+    
+    {% hook 'head:end' %}
+</head>
+<body class="bg-white {{ page.slug }}">
+    {% hook 'body:start' %}
+
+    <header class="site-header border-b">
+        <div class="container flex justify-between items-center py-4">
+            <a href="{{ link('/') }}" class="logo">
+                <img src="{{ store.logo }}" alt="{{ store.name }}" class="h-10">
+            </a>
+
+            <nav class="hidden md:flex gap-6">
+                {% for item in main_menu %}
+                    <a href="{{ item.url }}" class="text-gray-700 hover:text-black">{{ item.title }}</a>
+                {% endfor %}
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <salla-cart-summary></salla-cart-summary>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-100 py-8 mt-12">
+        <div class="container text-center text-sm text-gray-600">
+            <p>&copy; {{ "now"|date("Y") }} {{ store.name }}. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    {{ theme_asset('app.js') }}
+    {% hook 'body:end' %}
+</body>
+</html>
